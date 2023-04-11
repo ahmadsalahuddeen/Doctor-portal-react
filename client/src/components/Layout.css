@@ -1,0 +1,40 @@
+.main{
+    padding: 20px;  
+    height: 100vh;
+    
+}
+.sidebar{
+    background-color: #393E46;
+    border-radius: 5px;
+    box-shadow:  0 0 2px grey;
+min-height: 100%;
+padding: 10px;
+width: 300px;
+    margin-right: 20px;
+}
+
+.header{
+    background-color: #222831;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow:  0 0 2px grey;
+height: 10vh;
+    margin-bottom: 20px;
+}
+.body{
+    width: 100%;
+    background-color: #222831;
+    border-radius: 5px;
+    box-shadow:  0 0 2px grey;
+height: 82vh;
+
+}
+.content{
+    width: 100%;
+    height: 100%;
+}
+
+.main{
+    background-color: #222831;
+    color: #EEEEEE;
+}
