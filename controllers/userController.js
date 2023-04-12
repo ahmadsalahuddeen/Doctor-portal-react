@@ -65,14 +65,12 @@ const getUserInfo = async (req, res)  =>{
   console.log(req.body.userId)
   try {
    const user = await User.findOne({_id: req.body.userId})
+   user.password = ''
 if (!user) {
   return  res.status(200).send({message: `user doesn't exist `, success: false})
 } else {
 
- return res.status(200).send({message: 'nicee', success: true, data:{
-    name: user.name,
-    email: user.email
-  }})
+ return res.status(200).send({message: 'nicee', success: true, data:user})
 }
 
   } catch (error) {

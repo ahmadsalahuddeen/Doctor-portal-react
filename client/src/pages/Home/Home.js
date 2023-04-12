@@ -19,7 +19,7 @@ function Home() {
     } catch (error) {
       console.log(error.response.data);
     }
-  };
+  }; 
   useEffect(() => {
     getData();
   }, []);
