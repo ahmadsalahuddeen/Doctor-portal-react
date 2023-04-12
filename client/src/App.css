@@ -83,6 +83,8 @@ color: #393E46 !important;
 font-size: 16px !important;
 text-decoration: underline !important;
 }
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -90,4 +92,8 @@ text-decoration: underline !important;
   to {
     transform: rotate(360deg);
   }
+}
+
+.remix-icons{
+  font-size: 18px;
 }

@@ -5,26 +5,34 @@
 }
 .sidebar{
     background-color: #393E46;
-    border-radius: 5px;
+    border-radius: 15px;
     box-shadow:  0 0 2px grey;
 min-height: 100%;
 padding: 10px;
-width: 300px;
+margin-right: 20px;
+
     margin-right: 20px;
+    
 }
+
 
 .header{
     background-color: #222831;
     width: 100%;
-    border-radius: 5px;
+    border-radius: 15px;
     box-shadow:  0 0 2px grey;
 height: 10vh;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+
+display: flex;
+align-items: center;
+justify-content: space-between;
+
 }
 .body{
     width: 100%;
     background-color: #222831;
-    border-radius: 5px;
+    border-radius: 20px;
     box-shadow:  0 0 2px grey;
 height: 82vh;
 
@@ -39,7 +47,7 @@ height: 82vh;
     color: #EEEEEE;
 }
 .menu{
-
+padding: 0 10px;
     margin-top: 100px;
 }
 .menu-item{
@@ -72,4 +80,18 @@ height: 82vh;
     color: #EEEEEE;
     background-color: rgba(0, 255, 255, 0.156);
  
+}
+
+.close-icon{
+    font-size: 30px;
+    color: #EEEEEE !important;
+    cursor: pointer;
+    padding-left: 15px;
+
+}
+
+@media screen  and (max-width: 768px){
+    .menu{
+        padding: 0 0px;
+    }
 }

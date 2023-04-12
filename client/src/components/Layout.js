@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Layout.css";
 import { Link, useLocation } from "react-router-dom";
 import { useLocale } from "antd/es/locale";
+
 function Layout({ children }) {
+  const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
   const userMenu = [
     {
@@ -49,14 +51,39 @@ function Layout({ children }) {
                   }`}
                 >
                   <i className={menu.icon}></i>
-                  <Link path={menu.path}>{menu.name}</Link>
+                  {!collapsed && (
+                    <Link className="pe-4" path={menu.path}>
+                      {menu.name}
+                    </Link>
+                  )}
                 </div>
               );
             })}
           </div>
         </div>
         <div className="content">
-          <div className="header">header</div>
+          <div className="header">
+            {collapsed ? (
+              <i
+                className="ri-menu-2-line close-icon"
+                onClick={() => {
+                  setCollapsed(false);
+                }}
+              ></i>
+            ) : (
+              <i
+                className="ri-close-line close-icon"
+                onClick={() => {
+                  setCollapsed(true);
+                }}
+              ></i>
+            )}
+
+<div className="d-flex">
+<i className="ri-notification-line close-icon"></i>
+</div>
+
+          </div>
           <div className="body">{children}</div>
         </div>
       </div>
