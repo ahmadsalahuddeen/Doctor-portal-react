@@ -85,7 +85,7 @@ icon: 'ri-user-line'
                 >
                   <i className={menu.icon}></i>
                   {!collapsed && (
-                    <Link className="pe-4" path={menu.path}>
+                    <Link className="pe-4" to={menu.path}>
                       {menu.name}
                     </Link>
                   )}

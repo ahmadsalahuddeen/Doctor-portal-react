@@ -19,7 +19,7 @@ margin-right: 20px;
 
 
 .header{
-    background-color: #222831;
+    background-color: #EEEEEE;
     width: 100%;
     border-radius: 15px;
     box-shadow:  0 0 2px grey;
@@ -32,8 +32,9 @@ justify-content: space-between;
 
 }
 .body{
+    padding: 18px;
     width: 100%;
-    background-color: #222831;
+    background-color: whitesmoke;
     border-radius: 20px;
     box-shadow:  0 0 2px grey;
 height: 82vh;
@@ -45,8 +46,8 @@ height: 82vh;
 }
 
 .main{
-    background-color: #222831;
-    color: #EEEEEE;
+    background-color: #EEEEEE;
+    color: #222831;
 }
 .menu{
 padding: 0 10px;
@@ -86,7 +87,7 @@ padding: 0 10px;
 
 .close-icon{
     font-size: 30px;
-    color: #EEEEEE !important;
+    color: #222831 !important;
     cursor: pointer;
     padding-left: 15px;
 
@@ -106,6 +107,7 @@ padding: 0 10px;
     border-radius: 10px !important;
 }
 .Title{
+    color: #EEEEEE;
 padding: 10px;
 font-weight: bold;
 

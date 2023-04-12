@@ -98,3 +98,8 @@ text-decoration: underline !important;
 .remix-icons{
   font-size: 18px;
 }
+.page-title{
+  font-size: 25px;
+  color: #282c34;
+  font-weight: bold;
+}
