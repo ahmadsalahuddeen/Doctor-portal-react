@@ -47,8 +47,9 @@ box-shadow: 0 0 2px grey ;
 
 }
 .card-title{
-  font-size: 1.5rem;
+  font-size: 22px;
   font-weight: bold;
+  color: rgba(0, 0, 0, 0.589);
 }
 .normal-text{
 font-size: 1rem;
@@ -61,7 +62,7 @@ input{
   border: 1px solid rgba(128, 125, 125, 0.301) !important;
   height: 40px !important;
 }
-input:focus{
+input:focus, .ant-picker{
 outline: none !important;
 box-shadow: none !important;
 border: 1px solid grey !important;
@@ -75,6 +76,16 @@ border: 1px solid grey !important;
   border-color: #EEEEEE !important;
   width: 100% !important;
   height: 40px !important;
+
+}
+.primary-button-apply{
+  
+  background-color: #00ADB5 !important;
+  color: #EEEEEE !important;
+  border-color: #EEEEEE !important;
+  width: 100% !important;
+  height: 40px !important;
+  width: max-content !important;
 }
 .primary-button:focus{
   color: #EEEEEE !important;
@@ -100,6 +111,18 @@ text-decoration: underline !important;
 }
 .page-title{
   font-size: 25px;
-  color: #282c34;
+  color: #000000c5;
   font-weight: bold;
+}
+
+
+.ant-picker-input input{
+  border: none !important;
+}
+
+.ant-picker{
+  border-radius: 6px !important;
+  border: 1px solid rgba(128, 125, 125, 0.301) !important;
+  height: 40px !important;
+  height: 40px !important;
 }

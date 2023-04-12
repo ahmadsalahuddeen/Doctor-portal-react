@@ -25,6 +25,11 @@ const doctorSchema = mongoose.Schema({
         type: String, 
         required: true
     },
+    specialization: {
+        
+        type: String,
+        required: true
+    },
     experience: {
         type: String,
         required: true
@@ -33,14 +38,11 @@ const doctorSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    fromTime: {
-        type: String,
+    timings: {
+        type: [],
         required: true
     },
-    toTime: {
-        type: String,
-        required: true
-    },
+   
    
 }, {timestamps: true})
 
