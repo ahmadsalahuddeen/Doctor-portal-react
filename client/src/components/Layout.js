@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { hideLoading, showLoading } from "../redux/alertSlice";
 import { Badge } from "antd";
 
-function Layout({ children }) {
+function Layout({ children ,   }) {
  
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
@@ -63,10 +63,10 @@ icon: 'ri-user-line'
     
   ];
 
-
   
 
-  console.log('object ', user)
+  // console.log('object ', data)
+
   const menuToBeRendered = user?.isAdmin ? adminMenu : userMenu;
   return (
     <div className="main">
@@ -127,7 +127,7 @@ icon: 'ri-user-line'
             )}
 
 <div className="d-flex align-items-center px-4 ">
-<Badge count={user?.unseenNotification.length}>
+<Badge count={user?.unseenNotification.length} onClick={()=>navigate('/notification')}>
 
 <i className="ri-notification-line close-icon  "></i>
     </Badge>

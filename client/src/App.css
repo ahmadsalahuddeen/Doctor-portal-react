@@ -126,3 +126,6 @@ text-decoration: underline !important;
   height: 40px !important;
   height: 40px !important;
 }
+.cursorPointer{
+  cursor: pointer;
+}
