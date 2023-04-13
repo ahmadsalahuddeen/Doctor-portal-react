@@ -38,7 +38,14 @@ justify-content: space-between;
     border-radius: 20px;
     box-shadow:  0 0 2px grey;
 height: 82vh;
+overflow-y: scroll;
+-ms-overflow-style: none;  /* Internet Explorer 10+ */
+scrollbar-width: none;  /* Firefox */
 
+
+}
+.body::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
 }
 .content{
     width: 100%;
@@ -100,9 +107,9 @@ padding: 0 10px;
 }
 .linkProfile{
 
-    color: #EEEEEE !important;
-    background-color: #00acb5 !important;
-    font-size: 19px !important;
+    color: #0d4f53 !important;
+    background-color: #d0dfe1 !important;
+    font-size: 15px !important;
     text-decoration: underline !important;
     border-radius: 10px !important;
 }

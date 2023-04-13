@@ -5,6 +5,7 @@ import { useLocale } from "antd/es/locale";
 import useSelection from "antd/es/table/hooks/useSelection";
 import { useDispatch, useSelector } from "react-redux";
 import { hideLoading, showLoading } from "../redux/alertSlice";
+import { Badge } from "antd";
 
 function Layout({ children }) {
  
@@ -126,8 +127,11 @@ icon: 'ri-user-line'
             )}
 
 <div className="d-flex align-items-center px-4 ">
-<i className="ri-notification-line close-icon me-2 px-3"></i>
-<Link className="bg-info px-4 py-2  linkProfile" to='/profile'>{user?.name}</Link>
+<Badge count={user?.unseenNotification.length}>
+
+<i className="ri-notification-line close-icon  "></i>
+    </Badge>
+<Link className="bg-info px-4 py-2  ms-4  linkProfile" to='/profile'>{user?.name}</Link>
 
 </div>
 

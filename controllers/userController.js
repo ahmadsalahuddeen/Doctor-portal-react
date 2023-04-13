@@ -1,20 +1,22 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
+const Doctor = require("../models/doctorModel");
 
 const login = async (req, res) => {
-
   try {
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
-    return  res.status(200).send({ message: `user doesn't exist`, success: false });
+      return res
+        .status(200)
+        .send({ message: `user doesn't exist`, success: false });
     }
     const isPasswordMatch = await bcrypt.compare(
       req.body.password,
       user.password
     );
     if (!isPasswordMatch) {
-    return  res
+      return res
         .status(200)
         .send({ message: `Password doesn't match`, success: false });
     } else {
@@ -22,7 +24,7 @@ const login = async (req, res) => {
         expiresIn: "1d",
       });
 
-    return  res
+      return res
         .status(200)
         .send({ message: "login successfull", success: true, data: token });
     }
@@ -60,28 +62,53 @@ const register = async (req, res) => {
   }
 };
 
-const getUserInfo = async (req, res)  =>{
-
-  console.log(req.body.userId)
+const getUserInfo = async (req, res) => {
   try {
-   const user = await User.findOne({_id: req.body.userId})
-   user.password = ''
-if (!user) {
-  return  res.status(200).send({message: `user doesn't exist `, success: false})
-} else {
-
- return res.status(200).send({message: 'nicee', success: true, data:user})
-}
-
+    const user = await User.findOne({ _id: req.body.userId });
+    user.password = "";
+    if (!user) {
+      return res
+        .status(200)
+        .send({ message: `user doesn't exist `, success: false });
+    } else {
+      return res
+        .status(200)
+        .send({ message: "nicee", success: true, data: user });
+    }
   } catch (error) {
-    res.status(401).send({message:'failed to get user info', success: false, error})
+    res
+      .status(401)
+      .send({ message: "failed to get user info", success: false, error });
   }
-}
+};
 
+const doctorApplication = async (req, res) => {
+  try {
+    const newDoctor = new Doctor({ ...req.body, status: "Pending" });
+    await newDoctor.save()
+    const adminUser = await User.findOne({isAdmin: true})
+    const unseenNotification = {
+      type: 'new-doctor-request',
+      message: `${newDoctor.firstName} ${newDoctor.lastName} has applied for a doctor account`,
+      data: {
+        doctorId: newDoctor._id,
+        name: newDoctor.firstName + ' ' + newDoctor.lastName
+      },
+      onClickPath: '/admin/doctors'
+    }
+   
+    await User.findByIdAndUpdate(adminUser._id, {$push: {unseenNotification}})
+   res.status(200).send({message: 'doctor application inserted Successfully', success: true})
+  } catch (error) {
+    res
+      .status(500)
+      .send({ message: "Failed to post - apply dotor", success: false, error });
+  }
+};
 
 module.exports = {
   login,
   register,
-  getUserInfo
-
+  getUserInfo,
+  doctorApplication,
 };

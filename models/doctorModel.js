@@ -13,10 +13,7 @@ const doctorSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    email: {
-        type: String,
-        required: true
-    },
+  
     mobileNumber: {
         type: String, 
         required: true
@@ -42,7 +39,10 @@ const doctorSchema = mongoose.Schema({
         type: [],
         required: true
     },
-   
+   status:{
+    type: String,
+    default: 'Pending'
+   }
    
 }, {timestamps: true})
 
