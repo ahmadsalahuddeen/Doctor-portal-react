@@ -1,3 +1,4 @@
+const Doctor = require("../models/doctorModel")
 const User = require("../models/userModel")
 
 const getUsersList = async(req, res) => {
@@ -18,7 +19,7 @@ if (userData) {
 }
 const getDoctorsList = async(req, res) => {
     try {
-        const userData = await User.find({isDoctor: true})
+        const userData = await Doctor.find()
 if (userData) {
     
     res.status(200).send({message: 'User List Loaded', success: true, data: userData})

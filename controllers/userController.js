@@ -101,7 +101,7 @@ const doctorApplication = async (req, res) => {
       $push: { unseenNotification },
     });
     res.status(200).send({
-      message: "doctor application inserted Successfully",
+      message: "doctor application Applied Successfully",
       success: true,
     });
   } catch (error) {

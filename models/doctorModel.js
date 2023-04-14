@@ -13,6 +13,7 @@ const doctorSchema = mongoose.Schema({
         type: String,
         required: true
     },
+   
   
     mobileNumber: {
         type: String, 

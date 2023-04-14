@@ -52,7 +52,7 @@ toast.error(response.data.message)
             <Input placeholder='Enter you Last Name' />
         </Form.Item>
         </Col>
-       
+      
         <Col lg={8} span={8} xs={24} sm={24} >
         <Form.Item required name='mobileNumber' label='Mobile Number' rules={[{required : true}]}>
             <Input placeholder='Enter you phone' />
