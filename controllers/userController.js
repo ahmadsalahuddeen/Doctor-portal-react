@@ -113,6 +113,7 @@ const doctorApplication = async (req, res) => {
 
 const markNotifAsSeen = async (req, res) => {
   try {
+    console.log('getting here')
     const userData = await User.findOne({ _id: req.body.userId });
     const unseenNotification = userData.unseenNotification;
     userData.seenNotifications.push(...unseenNotification);
@@ -129,7 +130,7 @@ const markNotifAsSeen = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .send({ message: "Failed to post - apply dotor", success: false, error });
+      .send({ message: "Failed to mark notification as seen", success: false, error });
   }
 };
 
