@@ -3,6 +3,7 @@ import { toast } from 'react-hot-toast'
 import { useDispatch } from 'react-redux'
 import { hideLoading, showLoading } from '../redux/alertSlice'
 import { authAxios } from '../middlewares/AxiosInstance'
+import Layout from '../components/Layout'
 
 function UsersList() {
     const dispatch = useDispatch()
@@ -10,15 +11,19 @@ const [user, setUsers] = useState([])
 const getUserData = async()=>{
 try {
     dispatch(showLoading())
- const response = await authAxios.post('/admin/get-user-details')
+ const res = await authAxios.get('/admin/get-user-list')
+ dispatch(hideLoading())
 
-    dispatch(hideLoading())
+ if (res.data.data) {
+    setUsers(res.data.data)
+ }
+
     
     
 } catch (error) {
     dispatch(hideLoading())
 
-    toast.error('Failed to load users')
+console.log('failed to load users list')
 }
 
 }
@@ -29,7 +34,10 @@ getUserData()
 },[])
 
   return (
-    <div>UsersList</div>
+    <Layout>
+
+        <div>UsersList</div>
+    </Layout>
   )
 }
 

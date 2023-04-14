@@ -1,26 +1,40 @@
-import React, { useEffect, useState } from 'react'
-import { authAxios } from '../middlewares/AxiosInstance'
-import { getUserInfo } from '../../../controllers/userController'
-import toast from 'react-hot-toast'
+import React, { useEffect, useState } from "react";
+import { authAxios } from "../middlewares/AxiosInstance";
+
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { hideLoading, showLoading } from "../redux/alertSlice";
+import Layout from "../components/Layout";
 
 function DoctorsList() {
-    const 
-cont [user, setUserData ] = useState([])
-    const getUsers = async ()=>{
+
+  const dispatch = useDispatch();
+  const [doctor, setDoctor] = useState([]);
+  const getUserData = async () => {
     try {
-        
+      dispatch(showLoading());
+      const res = await authAxios.get("/admin/get-doctor-list");
+
+      dispatch(hideLoading());
+      if (res.data.data) {
+        setDoctor(res.data.data);
+      }
     } catch (error) {
-        toast.error('failed to load doctors List')
+      dispatch(hideLoading());
+
+      console.log("failed to laod doctor list");
     }
-   
-}
-useEffect(()=>{
-getUsers()
-},[])
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
 
   return (
-    <div>DoctorsList</div>
-  )
+    <Layout>
+      <div>DoctorsList</div>
+    </Layout>
+  );
 }
 
-export default DoctorsList
+export default DoctorsList;
