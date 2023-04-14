@@ -85,20 +85,25 @@ const getUserInfo = async (req, res) => {
 const doctorApplication = async (req, res) => {
   try {
     const newDoctor = new Doctor({ ...req.body, status: "Pending" });
-    await newDoctor.save()
-    const adminUser = await User.findOne({isAdmin: true})
+    await newDoctor.save();
+    const adminUser = await User.findOne({ isAdmin: true });
     const unseenNotification = {
-      type: 'new-doctor-request',
+      type: "new-doctor-request",
       message: `${newDoctor.firstName} ${newDoctor.lastName} has applied for a doctor account`,
       data: {
         doctorId: newDoctor._id,
-        name: newDoctor.firstName + ' ' + newDoctor.lastName
+        name: newDoctor.firstName + " " + newDoctor.lastName,
       },
-      onClickPath: '/admin/doctors'
-    }
-   
-    await User.findByIdAndUpdate(adminUser._id, {$push: {unseenNotification}})
-   res.status(200).send({message: 'doctor application inserted Successfully', success: true})
+      onClickPath: "/admin/doctors",
+    };
+
+    await User.findByIdAndUpdate(adminUser._id, {
+      $push: { unseenNotification },
+    });
+    res.status(200).send({
+      message: "doctor application inserted Successfully",
+      success: true,
+    });
   } catch (error) {
     res
       .status(500)
@@ -106,9 +111,54 @@ const doctorApplication = async (req, res) => {
   }
 };
 
+const markNotifAsSeen = async (req, res) => {
+  try {
+    const userData = await User.findOne({ _id: req.body.userId });
+    const unseenNotification = userData.unseenNotification;
+    userData.seenNotifications.push(...unseenNotification);
+    userData.unseenNotification = [];
+
+    const response = await userData.save();
+    response.password = undefined;
+
+    res.status(200).send({
+      message: "Notifications are marked as Seen 👀",
+      success: true,
+      data: response,
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .send({ message: "Failed to post - apply dotor", success: false, error });
+  }
+};
+
+const deleteSeenNotifications = async (req, res) => {
+  try {
+    const userData = await User.findOne({ _id: req.body.userId });
+
+    userData.seenNotifications = [];
+
+    const response = await userData.save();
+    response.password = undefined;
+
+    res.status(200).send({
+      message: "All notifications is Deleted 🙈",
+      success: true,
+      data: response,
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .send({ message: "failed to delete messages", success: false, error });
+  }
+};
+
 module.exports = {
   login,
   register,
   getUserInfo,
+  deleteSeenNotifications,
   doctorApplication,
+  markNotifAsSeen,
 };
