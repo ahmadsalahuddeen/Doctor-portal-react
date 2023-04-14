@@ -35,7 +35,7 @@ navigate('/login')
   }
 }
 useEffect(()=>{
- if(!user){
+ if(!user ){
   getUser()
  }
 },[])

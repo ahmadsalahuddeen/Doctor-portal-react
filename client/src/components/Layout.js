@@ -6,6 +6,7 @@ import useSelection from "antd/es/table/hooks/useSelection";
 import { useDispatch, useSelector } from "react-redux";
 import { hideLoading, showLoading } from "../redux/alertSlice";
 import { Badge } from "antd";
+import { reset, setUser } from "../redux/userSlice";
 
 function Layout({ children ,   }) {
  
@@ -95,13 +96,14 @@ icon: 'ri-user-line'
             })}
             <div onClick={()=>{
              localStorage.clear()
+             dispatch(reset())
               navigate('/login')
             }}
                   className={`d-flex menu-item `}
                 >
                   <i className='ri-logout-circle-line'></i>
                   {!collapsed && (
-                    <Link className="pe-4" to='/login' >
+                    <Link className="pe-4">
                       LogOut
                     </Link>
                   )}

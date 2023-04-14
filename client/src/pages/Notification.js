@@ -28,7 +28,7 @@ function Notification() {
 
       dispatch(hideLoading());
       if (res.data.success) {
-        // dispatch(setUser(res.data.data))
+        dispatch(setUser(res.data.data))
         toast.success(res.data.message);
       } else {
         toast.success(res.data.message);
@@ -92,10 +92,24 @@ function Notification() {
         </Tabs.TabPane>
         <Tabs.TabPane tab="seen" key={1}>
           <div className="d-flex justify-content-end ">
-            <h1 className="anchor" onClick={deleteNotification}>
+            <h1 className="anchor cursorPointer" onClick={deleteNotification}>
               Delete All
             </h1>
           </div>
+          {user?.seenNotifications.map((notification) => {
+            return (
+              <div className="card p-2 my-2 cursorPointer">
+                <div
+                  className="card-text"
+                  onClick={() => {
+                    navigate(notification.onClickPath);
+                  }}
+                >
+                  {notification.message}
+                </div>
+              </div>
+            );
+          })}
         </Tabs.TabPane>
       </Tabs>
     </Layout>
