@@ -2,9 +2,10 @@ const  Doctor = require("../models/doctorModel");
 
     
 const doctorInfo = async (req, res) => {
-    try {
-      const doctor = await Doctor.findOne({ userId: req.query.id });
-      user.password = "";
+console.log(req.body.userId);
+  try {
+      const doctor = await Doctor.findOne({ userId: req.body.userId });
+
       if (!doctor) {
         return res
           .status(200)
@@ -12,7 +13,7 @@ const doctorInfo = async (req, res) => {
       } else {
         return res
           .status(200)
-          .send({ message: "nicee", success: true, data: doctor });
+          .send({ message: "fetched doctor details successfully", success: true, data: doctor });
       }
     } catch (error) {
       res
@@ -20,7 +21,28 @@ const doctorInfo = async (req, res) => {
         .send({ message: "failed to get Doctor info", success: false, error });
     }
   };
+const updateDoctorInfo = async (req, res) => {
+console.log(req.body.userId);
+  try {
+      const doctor = await Doctor.findOneAndUpdate({ userId: req.body.userId }, req.body, {new: true});
+
+      if (!doctor) {
+        return res
+          .status(200)
+          .send({ message: `Failed to Update Details `, success: false });
+      } else {
+        return res
+          .status(200)
+          .send({ message: "Updated ", success: true, data: doctor });
+      }
+    } catch (error) {
+      res
+        .status(401)
+        .send({ message: "failed to update doctor details", success: false, error });
+    }
+  };
 
   module.exports = {
-    doctorInfo
+    doctorInfo,
+    updateDoctorInfo
   }

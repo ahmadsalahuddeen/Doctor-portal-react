@@ -51,7 +51,7 @@ function Layout({ children }) {
 
     {
       name: "Profile",
-      path: `/doctor/profile?id=${user?._id}`,
+      path: `/doctor/profile/${user?._id}`,
       icon: "ri-user-3-line",
     },
   ];

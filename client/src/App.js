@@ -83,7 +83,7 @@ function App() {
           }
         />
         <Route 
-          path="/doctor/profile"
+          path="/doctor/profile/:id"
           element={
             <ProtectedComponents>
               <DoctorProfile />

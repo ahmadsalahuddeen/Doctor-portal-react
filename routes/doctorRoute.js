@@ -4,6 +4,7 @@ const auth = require('../middlewares/auth')
 
 route.get('/get-doctor-info-by-userId', auth, doctor.doctorInfo)
 
+route.post('/update-doctor-info', auth, doctor.updateDoctorInfo)
 
 
 

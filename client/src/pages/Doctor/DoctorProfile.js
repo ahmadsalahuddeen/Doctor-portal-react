@@ -13,13 +13,10 @@ import DoctorForm from "../../components/DoctorForm";
 function DoctorProfile() {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
-const dispatch = useDispatch();
-  const [doctor, setDoctor] = useState({});
-
+  const dispatch = useDispatch();
+  const [doctor, setDoctor] = useState(null);
 
   const getUserData = async () => {
-
-
     try {
       dispatch(showLoading());
       const res = await authAxios.get("/doctor/get-doctor-info-by-userId", {
@@ -40,7 +37,7 @@ const dispatch = useDispatch();
   const handleSubmit = async (values) => {
     try {
       dispatch(showLoading());
-      const response = await authAxios.post("/api/user/apply-doctor-account", {
+      const response = await authAxios.post("/api/doctor/update-doctor-info", {
         ...values,
         userId: user._id,
       });
@@ -63,11 +60,14 @@ const dispatch = useDispatch();
   }, []);
   return (
     <Layout>
-      <DoctorForm
-        buttonText="Update"
-        title="Doctor Profile"
-        handleSubmit={handleSubmit}
-      />
+      {doctor && (
+        <DoctorForm
+          buttonText="Update"
+          title="Doctor Profile"
+          handleSubmit={handleSubmit}
+          initialValues={doctor}
+        />
+      )}
     </Layout>
   );
 }

@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { hideLoading, showLoading } from "../redux/alertSlice";
 import toast from "react-hot-toast";
 import axios from "axios";
-import DoctorForm from "../components/DoctorForm";
+import DoctorForm from "../components/DoctorForm"; 
 function ApplyDoctor() {
   const navigate = useNavigate();
   const dispatch = useDispatch();

@@ -1,12 +1,12 @@
 import React from 'react'
 import { Col, Form, Input, Row, TimePicker, Button  } from 'antd'
 
-function DoctorForm({title, handleSubmit,buttonText}) {
+function DoctorForm({title, handleSubmit,buttonText, initialValues}) {
   return (
     <>
     <h1 className='page-title'>{title}</h1>
     <hr />
-    <Form layout='vertical' onFinish={handleSubmit}  >
+    <Form layout='vertical' onFinish={handleSubmit} initialValues={initialValues}  >
         <h1 className="card-title mt-3">
             Personal Information
         </h1>
@@ -55,11 +55,11 @@ function DoctorForm({title, handleSubmit,buttonText}) {
             <Input min={0} placeholder='Enter you phone'  type='number'/>
         </Form.Item>
         </Col>
-        <Col lg={8} span={8} xs={24} sm={24} >
+        {/* <Col lg={8} span={8} xs={24} sm={24} >
         <Form.Item required name='timings' label='Timing' rules={[{required : true}]}>
         <TimePicker.RangePicker  />
         </Form.Item>
-        </Col>
+        </Col> */}
         </Row> 
         <div className="d-flex justify-content-end">
             <Button className='primary-button-apply' htmlType='submit'  >{buttonText}</Button>
