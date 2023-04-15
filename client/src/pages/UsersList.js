@@ -53,7 +53,7 @@ const columns = [
 ]
   return (
     <Layout>
-<h1 className="page-header">User's List</h1>
+<h1 className="page-title">User's List</h1>
 <Table columns={columns} dataSource={user} />
 
     </Layout>

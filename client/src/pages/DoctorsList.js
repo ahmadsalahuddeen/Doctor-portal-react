@@ -66,7 +66,7 @@ function DoctorsList() {
   ];
   return (
     <Layout>
-      <h1 className="page-header">Doctor' s List</h1>
+      <h1 className="page-title">Doctor' s List</h1>
       <Table columns={columns} dataSource={doctor} />
     </Layout>
   );

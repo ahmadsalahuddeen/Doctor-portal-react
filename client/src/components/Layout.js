@@ -39,6 +39,25 @@ const dispatch = useDispatch()
     },
   
   ];
+  const doctorMenu = [
+    {
+      name: "Home",
+      path: "/",
+      icon: "ri-home-smile-2-fill",
+    },
+    {
+      name: "Appoinments",
+      path: "/appoinments",
+      icon: "ri-file-list-3-line",
+    },
+  
+    {
+      name: "Profile",
+      path: `/doctor/profile/${user._id}`,
+      icon: "ri-user-3-line",
+    },
+  
+  ];
   const adminMenu = [
     {
       name: "Home",
@@ -68,7 +87,7 @@ icon: 'ri-user-line'
 
   // console.log('object ', data)
 
-  const menuToBeRendered = user?.isAdmin ? adminMenu : userMenu;
+  const menuToBeRendered = user?.isAdmin ? adminMenu : user?.isDoctor ? doctorMenu : userMenu
   return (
     <div className="main">
       <div className="d-flex layout">
