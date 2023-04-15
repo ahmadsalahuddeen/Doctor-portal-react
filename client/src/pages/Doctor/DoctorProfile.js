@@ -37,7 +37,7 @@ function DoctorProfile() {
   const handleSubmit = async (values) => {
     try {
       dispatch(showLoading());
-      const response = await authAxios.post("/api/doctor/update-doctor-info", {
+      const response = await authAxios.post("/doctor/update-doctor-info", {
         ...values,
         userId: user._id,
       });
