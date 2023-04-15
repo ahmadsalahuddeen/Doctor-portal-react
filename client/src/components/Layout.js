@@ -8,13 +8,12 @@ import { hideLoading, showLoading } from "../redux/alertSlice";
 import { Badge } from "antd";
 import { reset, setUser } from "../redux/userSlice";
 
-function Layout({ children ,   }) {
- 
+function Layout({ children }) {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
-  const {user} = useSelector((state => state.user))
-const navigate = useNavigate()
-const dispatch = useDispatch()
+  const { user } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const userMenu = [
     {
@@ -37,7 +36,6 @@ const dispatch = useDispatch()
       path: "/profile",
       icon: "ri-user-3-line",
     },
-  
   ];
   const doctorMenu = [
     {
@@ -50,13 +48,12 @@ const dispatch = useDispatch()
       path: "/appoinments",
       icon: "ri-file-list-3-line",
     },
-  
+
     {
       name: "Profile",
       path: `/doctor/profile/${user._id}`,
       icon: "ri-user-3-line",
     },
-  
   ];
   const adminMenu = [
     {
@@ -65,35 +62,29 @@ const dispatch = useDispatch()
       icon: "ri-home-smile-2-fill",
     },
     {
-name: 'Users',
-path: '/users',
-icon: 'ri-user-line'
+      name: "Users",
+      path: "/users",
+      icon: "ri-user-line",
     },
     {
-      name: 'Doctors',
-      path: '/doctors',
-      icon: 'ri-shield-user-line'
+      name: "Doctors",
+      path: "/doctors",
+      icon: "ri-shield-user-line",
     },
- 
-    // { hided beacuse thers a path to profile in header
-    //   name: "Profile",
-    //   path: "/profile",
-    //   icon: "ri-user-3-line",
-    // },
-    
+
   ];
 
-  
-
-  // console.log('object ', data)
-
-  const menuToBeRendered = user?.isAdmin ? adminMenu : user?.isDoctor ? doctorMenu : userMenu
+  const menuToBeRendered = user?.isAdmin
+    ? adminMenu
+    : user?.isDoctor
+    ? doctorMenu
+    : userMenu;
   return (
     <div className="main">
       <div className="d-flex layout">
         <div className="sidebar">
           <div className="sidebar-header">
-            <h1 className="Title">{!collapsed ?`B'Healthy` : '❤️‍🩹'} </h1>
+            <h1 className="Title">{!collapsed ? `B'Healthy` : "❤️‍🩹"} </h1>
           </div>
           <div className="menu">
             {menuToBeRendered.map((menu) => {
@@ -113,20 +104,17 @@ icon: 'ri-user-line'
                 </div>
               );
             })}
-            <div onClick={()=>{
-             localStorage.clear()
-             dispatch(reset())
-              navigate('/login')
-            }}
-                  className={`d-flex menu-item `}
-                >
-                  <i className='ri-logout-circle-line'></i>
-                  {!collapsed && (
-                    <Link className="pe-4">
-                      LogOut
-                    </Link>
-                  )}
-                </div>
+            <div
+              onClick={() => {
+                localStorage.clear();
+                dispatch(reset());
+                navigate("/login");
+              }}
+              className={`d-flex menu-item `}
+            >
+              <i className="ri-logout-circle-line"></i>
+              {!collapsed && <Link className="pe-4">LogOut</Link>}
+            </div>
           </div>
         </div>
         <div className="content">
@@ -147,15 +135,20 @@ icon: 'ri-user-line'
               ></i>
             )}
 
-<div className="d-flex align-items-center px-4 ">
-<Badge count={user?.unseenNotification.length} onClick={()=>navigate('/notification')}>
-
-<i className="ri-notification-line close-icon  "></i>
-    </Badge>
-<Link className="bg-info px-4 py-2  ms-4  linkProfile" to='/profile'>{user?.name}</Link>
-
-</div>
-
+            <div className="d-flex align-items-center px-4 ">
+              <Badge
+                count={user?.unseenNotification.length}
+                onClick={() => navigate("/notification")}
+              >
+                <i className="ri-notification-line close-icon  "></i>
+              </Badge>
+              <Link
+                className="bg-info px-4 py-2  ms-4  linkProfile"
+                to="/profile"
+              >
+                {user?.name}
+              </Link>
+            </div>
           </div>
           <div className="body">{children}</div>
         </div>
